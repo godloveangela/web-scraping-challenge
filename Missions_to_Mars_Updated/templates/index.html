@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- latest mar news-->
+    <!-- bootstrap container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div
+                style="
+                  width: 100%;
+                  height: 300px;
+                  background-color: grey;
+                  border-radius: 15rpx;
+                  border-radius: 6px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div style="margin-top: 50px">
+                    <h1 style="font-size: 80px">Mission to Mars</h1>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <a href="">
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-lg"
+                      data-toggle="modal"
+                      data-target="#myModal"
+                    >
+                      Scrape New Data
+                    </button></a
+                  >
+                </div>
+              </div>
+            </div>
+        </div>
+        {% if mars is not none %}   
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Latest News</h1>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div>
+                                <h3>{{mars["news_title"]}}</h3>
+                            </div>
+                            <div>
+                                <p>{{mars["news_text"]}}</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- show featured_image_url -->
+            <div class="col-md-8">
+                <img src="{{mars['featured_image_url']}}" alt="featured_image_url">
+            </div>
+            <div class="col-md-4">
+                <!-- mars_facts json -->
+                <div>
+                    <h3>mars_facts</h3>
+                    <!-- line width 2px -->
+                    <table border="1px">
+                        {%for mf in mars['mars_facts']%}
+                        <tr>
+                            <th>
+                                <p>{{mf['Description'] | safe}}</p>
+                            </th>
+                            <th>
+                                <p>{{mf['Mars']  | safe}}</p>
+                            </th>
+                            <th>
+                                <p>{{mf['Earth']  | safe}}</p>
+                            </th>
+                        </tr>
+                        {%endfor%}
+
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- show mars_hemisphere -->
+            <div class="col-md-12">
+                <h1>Mars Hemisphere</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>{{mars['hemisphere_image_urls'][0]['title']}}</h3>
+                        <div><img src="{{mars['hemisphere_image_urls'][0]['img_url']}}" alt="mars_hemisphere" width="100%"></div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{mars['hemisphere_image_urls'][1]['title']}}</h3>
+                        <div><img src="{{mars['hemisphere_image_urls'][1]['img_url']}}" alt="mars_hemisphere" width="100%"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>{{mars['hemisphere_image_urls'][2]['title']}}</h3>
+                        <div><img src="{{mars['hemisphere_image_urls'][2]['img_url']}}" alt="mars_hemisphere" width="100%"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{mars['hemisphere_image_urls'][3]['title']}}</h3>
+                        <div><img src="{{mars['hemisphere_image_urls'][3]['img_url']}}" alt="mars_hemisphere" width="100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+</body>
+
+</html>
